@@ -597,7 +597,7 @@ function Q7GridKeys:draw_grid(grid)
 
                     if self.selected_keys[x][y] == 1 then
                         grid:led(x + xOff, y + yOff, 15)
-                    elseif noteName == music.NOTE_NAMES[self.root_note] then
+                    elseif noteName == music.NOTE_NAMES[self.root_note] and self.layout_mode ~= 3 then
                         grid:led(x + xOff, y + yOff, 6 + selectedOff + animOff)
                     elseif self:is_note_in_scale(noteNum) then
                         if self.layout_mode == 1 then -- Chromatic mode
