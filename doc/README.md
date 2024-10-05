@@ -91,11 +91,25 @@ Press K3 to change the pattern's offset mode to triplets. In triplet mode each s
 
 Here you can save or load your project, create a new project or kill all the notes if shit goes south. Creating a new project will clear everything and stop playback. Loading a project can be done without stopping playback. 
 
+## timber interface
 
+See [lines](https://llllllll.co/t/timber/21407/83) for more on the Timber interface. A few common points:
+
+- **K1 + K3** reverses sample playback on waveform screen.
+- In **Loop** and **1-Shot** mode, you can adjust the **Attack** and **Decay** of the envelope.
+- In **Gated** mode, you can adjust all **ADSR** settings.
 
 ## isomorphic keyboard
 
-The heart of gridstep is the isomorphic keyboard. Notes are laid out in an isometric fashion meaning each row of notes is shifted right either by 5 or 7 steps depending on the active layout mode. 
+The heart of gridstep is the isomorphic keyboard. Notes are laid out in an isometric fashion meaning each row of notes is shifted right either by 5 or 7 steps depending on the active layout mode.
+
+## kit
+
+#### loading a kit
+
+When loading a kit, gridstep will search for files with the following name convention: `<row><col> <filename>` where `<row>` and `<col>` are both **zero**-indexed, `<row>` starts from the bottom, and `<col>` is zero-padded; also, notice the space ` `. So, you could have a file named `203 sample.wav` which would correspond to the third row from the bottom, and column 4. Of course, the first row in gridstep is taken up by the navigation menu, so you could think of this as the "second" row up after that.
+
+If files are not named this way, they will be loaded in the order in which they show up in the folder on norns. *Note: if some files are named as above, and some are not, files after a `<row><col>` index might be overwritten. So, try to keep naming convention consistent.*
 
 #### in scale mode
 

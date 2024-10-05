@@ -559,7 +559,8 @@ function on_sample_loaded(sampleId)
             -- if Timber.samples_meta[sampleId].streaming == 0 and Timber.samples_meta[sampleId].num_frames / Timber.samples_meta[sampleId].sample_rate < 1 and string.find(string.lower(params:get("sample_" .. sampleId)), "loop") == nil then
             --     params:set("play_mode_" .. sampleId, 4) -- One shot
             -- end
-
+            
+            -- TODO: consider adding `or sample length < 1 sec ... or something`
             if string.find(string.lower(params:get("sample_" .. sampleId)), "loop") == nil then
                 params:set("play_mode_" .. sampleId, 4) -- One shot
             end
@@ -3916,12 +3917,21 @@ function load_folder(file, add)
     for k, v in ipairs(Timber.FileSelect.list) do
       if v == file then found = true end
       if found then
+        -- get lowercase filename
+        local lower_v = v:lower()
+        
+        -- check for <row0col> ... naming convention
+        local rowcol = string.match(lower_v, "^%d%d%d ")
+        if rowcol ~= nil then
+            rowcol = tonumber(rowcol)
+            sample_id = 16 * (rowcol // 100) + rowcol - (rowcol // 100) * 100
+        end
         if sample_id > KIT_SAMPLES then
           print("Max files loaded")
           break
         end
+
         -- Check file type
-        local lower_v = v:lower()
         if string.find(lower_v, ".wav") or string.find(lower_v, ".aif") or string.find(lower_v, ".aiff") or string.find(lower_v, ".ogg") then
           Timber.load_sample(sample_id, folder .. v)
         --   gridKeys.kit_has_sample[sample_id-KIT_SAMPLES_START+1] = 1
