@@ -275,3 +275,10 @@ Scrolling clockwise past 100% provides several options:
 * **First** - step will trigger the first time a pattern plays. The step will not trigger during sequential loops of the pattern.
 * **!First** - step will not trigger the first time a pattern plays. The step will trigger during sequential loops of the pattern.
 * **X:Y** - step will trigger on a counter that fires when the number of pattern loops reaches X. The counter is reset on Y number of steps. If set to 1:2 the step will trigger the first time a pattern plays, not the second time, and then trigger again the third time and so on. 
+
+
+## kit layout
+
+> For 16x8 grids.
+
+The Timber engine allows gridstep to load 128 different samples. In gridstep, the first 16 are taken up by the sound functionality. I.e., each track can be associated with a sound that is transposed to play different notes. In **kit** mode, the rest of the tracks are made available for a kit. When you view the loaded samples in kit mode, you are looking at the 112 available samples to be triggered. At maximum, the isomorphic keyboard will have the 112 available kit samples on the top, and the menu at the bottom.
